@@ -6,9 +6,3 @@ on:
 jobs:
   build:
     runs-on: ubuntu-18.04
-
-    steps:
-      - name: Check the contents of the file
-        uses: actions/checkout@v1
-        with:
-          ref: 'deploy'
