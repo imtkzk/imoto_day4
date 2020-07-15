@@ -12,31 +12,3 @@ jobs:
         uses: actions/checkout@v1
         with:
           ref: 'deploy'
-
-      - name: Configration on Ubuntu 18.04
-        uses: actions/setup-node@v1
-        with:
-          node-version: '10.x'
-
-      - name: Deploy configration
-        run: |
-          mkdir ~/.ssh
-          ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-          echo "${{ secrets.ACTIONS_DEPLOY_KEY }}" > ~/.ssh/id_rsa
-          chmod 400 ~/.ssh/id_rsa
-      - name: Build
-        run: |
-          yarn install
-          yarn generate
-      - name: Push to GitHub
-        env:
-          GITHUB_USER: "imtkzk"
-          GITHUB_EMAIL: "info@cullumdesign.com"
-        run: |
-          git config --local user.name "${GITHUB_USER}"
-          git config --local user.email "${GITHUB_EMAIL}"
-          git remote set-url origin git@github.com:imtkzk/imoto_day4.git
-          git add -f docs
-          git add .
-          git commit -m "auto rebuilding site"
-          git push -f origin HEAD:master
