@@ -27,7 +27,8 @@ jobs:
       - name: Build
         run: |
           yarn install
-          yarn generate
+          yarn export
+          
       - name: Push to GitHub
         env:
           GITHUB_USER: "imtkzk"
