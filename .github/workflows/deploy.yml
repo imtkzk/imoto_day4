@@ -34,8 +34,6 @@ jobs:
           GITHUB_USER: "imtkzk"
           GITHUB_EMAIL: "info@cullumdesign.com"
         run: |
-          touch docs/CNAME
-          echo "www.kikagaku.co.jp" >> docs/CNAME
           git config --local user.name "${GITHUB_USER}"
           git config --local user.email "${GITHUB_EMAIL}"
           git remote set-url origin git@github.com:imtkzk/imoto_day4.git
