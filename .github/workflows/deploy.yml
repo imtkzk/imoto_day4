@@ -23,3 +23,23 @@ jobs:
           ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
           echo "${{ secrets.ACTIONS_DEPLOY_KEY }}" > ~/.ssh/id_rsa
           chmod 400 ~/.ssh/id_rsa
+          
+      - name: Build
+        run: |
+          yarn install
+          yarn export
+
+      - name: Push to GitHub
+        env:
+          GITHUB_USER: "imtkzk"
+          GITHUB_EMAIL: "info@cullumdesign.com"
+        run: |
+          touch docs/CNAME
+          echo "www.kikagaku.co.jp" >> docs/CNAME
+          git config --local user.name "${GITHUB_USER}"
+          git config --local user.email "${GITHUB_EMAIL}"
+          git remote set-url origin git@github.com:imtkzk/imoto_day4.git
+          git add -f docs
+          git add .
+          git commit -m "auto rebuilding site"
+          git push -f origin HEAD:master
