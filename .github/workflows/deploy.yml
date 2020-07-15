@@ -15,4 +15,4 @@ jobs:
       - name: Configration on Ubuntu 18.04
         uses: actions/setup-node@v1
         with:
-          node-version: '10.x':  
+          node-version: '10.x'
